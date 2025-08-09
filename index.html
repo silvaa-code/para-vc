@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camila ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pink-light: #FFC0CB;
+            --white: #FFFFFF;
+            --red: #FF4D4D;
+            --gold: #FFD700;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--pink-light) 0%, var(--white) 100%);
+            color: #333;
+            scroll-behavior: smooth;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--red);
+            text-decoration: none;
+        }
+
+        .nav {
+            display: block;
+        }
+
+        .nav-list {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-link {
+            font-size: 1.1rem;
+            color: #555;
+            text-decoration: none;
+            margin: 0 1rem;
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--red);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            background-color: #333;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Sections */
+        .section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 4rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--red);
+            margin-bottom: 2rem;
+        }
+
+        /* Section 1 - Início */
+        .inicio {
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="%23FFC0CB" fill-opacity="0.2" /></svg>'), linear-gradient(135deg, var(--pink-light), var(--white));
+            background-size: 20px 20px, cover;
+        }
+
+        .title {
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--red);
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: #555;
+        }
+
+        .scroll-down {
+            margin-top: 2rem;
+            text-decoration: none;
+            color: #555;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            opacity: 0.8;
+        }
+
+        .arrow-down {
+            font-size: 1.5rem;
+            animation: bounce 1.5s infinite;
+        }
+
+        /* Section 2 - Nossa História */
+        .nossa-historia {
+            background: #f9f9f9;
+        }
+
+        .timeline {
+            width: 100%;
+            max-width: 900px;
+            position: relative;
+            padding: 50px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            background: var(--pink-light);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            width: 50%;
+            position: relative;
+            padding: 20px 40px;
+            opacity: 0;
+            transition: all 1s ease-out;
+        }
+
+        .timeline-item.left {
+            left: 0;
+            text-align: right;
+        }
+
+        .timeline-item.right {
+            left: 50%;
+            text-align: left;
+        }
+
+        .timeline-item.in-view {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .timeline-item.left.in-view {
+            transform: translateX(0);
+        }
+
+        .timeline-item.right.in-view {
+            transform: translateX(0);
+        }
+
+        .timeline-item .timeline-icon {
+            position: absolute;
+            top: 50%;
+            width: 40px;
+            height: 40px;
+            background: var(--gold);
+            border-radius: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            border: 3px solid var(--white);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-item.left .timeline-icon {
+            right: -20px;
+        }
+
+        .timeline-item.right .timeline-icon {
+            left: -20px;
+        }
+
+        .timeline-content {
+            background: var(--white);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-content h3 {
+            font-size: 1.3rem;
+            color: var(--red);
+            margin-bottom: 5px;
+        }
+
+        .timeline-content p {
+            font-size: 1rem;
+            color: #666;
+        }
+        
+        /* Section 3 - Por que eu te amo */
+        .por-que-eu-te-amo {
+            background: linear-gradient(135deg, var(--white), var(--pink-light));
+        }
+
+        .reason-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .reason-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(5px);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            transform: scale(0.9);
+            opacity: 0;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+        }
+
+        .reason-item.in-view {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .reason-icon {
+            font-size: 2.5rem;
+            color: var(--gold);
+            min-width: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .reason-item p {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #555;
+            margin: 0;
+        }
+
+        /* Section 4 - Você é linda */
+        .voce-e-linda {
+            background: #f9f9f9;
+        }
+
+        .linda-box {
+            max-width: 700px;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(3px);
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            border: 2px solid var(--pink-light);
+            line-height: 1.8;
+            font-style: italic;
+            opacity: 0;
+            animation: fade-in 1.5s ease-out forwards;
+        }
+        
+        .linda-box p {
+            font-size: 1.2rem;
+            color: #444;
+            margin-bottom: 1rem;
+        }
+
+        /* Section 5 - Mensagem */
+        .mensagem {
+            background: linear-gradient(135deg, var(--white), var(--pink-light));
+        }
+
+        .message-box {
+            max-width: 700px;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(3px);
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            border: 2px solid var(--pink-light);
+            line-height: 1.8;
+        }
+
+        .message-box p {
+            font-size: 1.2rem;
+            color: #444;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--pink-light);
+            color: var(--white);
+            text-align: center;
+            padding: 1.5rem;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer p {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Animações */
+        @keyframes fade-in {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slide-in-left {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slide-in-right {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes zoom-in {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .fade-in { animation: fade-in 1s ease-out forwards; }
+        .zoom-in { animation: zoom-in 1s ease-out forwards; }
+        .heart-pulse { animation: pulse 1.5s infinite; color: var(--red); }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .header {
+                padding: 1rem;
+            }
+            .nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(5px);
+                transform: translateY(-150%);
+                transition: transform 0.3s ease-in-out;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+        
+            .nav.active {
+                transform: translateY(0);
+            }
+            
+            .nav-list {
+                flex-direction: column;
+                align-items: center;
+                padding: 1rem 0;
+            }
+            .nav-list li {
+                margin: 1rem 0;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+            .title { font-size: 2.5rem; }
+            .subtitle { font-size: 1.2rem; }
+            .section-title { font-size: 2rem; }
+            .timeline::before { left: 1rem; }
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                padding: 10px 20px 10px 60px;
+                text-align: left !important;
+            }
+            .timeline-item.right .timeline-icon,
+            .timeline-item.left .timeline-icon {
+                left: 0;
+                transform: translateX(10px) translateY(-50%);
+            }
+            .message-box { padding: 2rem; }
+            .message-box p { font-size: 1rem; }
+            .reason-item { flex-direction: column; text-align: center; }
+            .linda-box { padding: 2rem; }
+            .linda-box p { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <a href="#inicio" class="logo">Camila ❤️</a>
+        <nav class="nav">
+            <ul class="nav-list">
+                <li><a href="#inicio" class="nav-link">Início</a></li>
+                <li><a href="#nossa-historia" class="nav-link">Nossa História</a></li>
+                <li><a href="#por-que-eu-te-amo" class="nav-link">Por que te amo</a></li>
+                <li><a href="#voce-e-linda" class="nav-link">Você é linda</a></li>
+                <li><a href="#mensagem" class="nav-link">Mensagem</a></li>
+            </ul>
+        </nav>
+        <div class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </header>
+
+    <main>
+        <section id="inicio" class="section inicio">
+            <div class="content fade-in">
+                <h1 class="title">Oi Camila <span class="heart-pulse">❤️</span></h1>
+                <p class="subtitle">Fiz esse site para você com muito carinho</p>
+                <a href="#nossa-historia" class="scroll-down">
+                    Role para ver mais
+                    <span class="arrow-down">↓</span>
+                </a>
+            </div>
+        </section>
+
+        <section id="nossa-historia" class="section nossa-historia">
+            <h2 class="section-title">Nossa História</h2>
+            <div class="timeline">
+                <div class="timeline-item slide-in left">
+                    <div class="timeline-icon">🌟</div>
+                    <div class="timeline-content">
+                        <h3>Onde tudo começou</h3>
+                        <p>13 de Maio de 2024</p>
+                        <p>Nosso primeiro "oi" e a descoberta de uma conexão especial. Você é meu tesouro e eu sou um pirata que achou esse tesouro que levarei para o resto da vida.</p>
+                    </div>
+                </div>
+                <div class="timeline-item slide-in right">
+                    <div class="timeline-icon">🏎️</div>
+                    <div class="timeline-content">
+                        <h3>O nosso primeiro encontro</h3>
+                        <p>02 de Agosto de 2025</p>
+                        <p>O kart que se tornou o início de uma grande história, repleta de emoção e de alegrias.</p>
+                    </div>
+                </div>
+                <div class="timeline-item slide-in left">
+                    <div class="timeline-icon">✨</div>
+                    <div class="timeline-content">
+                        <h3>O nosso "eu te amo"</h3>
+                        <p>A primeira vez que dissemos essas palavras. Um momento inesquecível que nos uniu para sempre.</p>
+                    </div>
+                </div>
+                <div class="timeline-item slide-in right">
+                    <div class="timeline-icon">🎬</div>
+                    <div class="timeline-content">
+                        <h3>Os videos que eu te envio</h3>
+                        <p>Um pequeno gesto meu que, em todos os videos que assisto, me lembra você.</p>
+                    </div>
+                </div>
+                <div class="timeline-item slide-in left">
+                    <div class="timeline-icon">🌙</div>
+                    <div class="timeline-content">
+                        <h3>As nossas noites estreladas</h3>
+                        <p>Momentos em que olhamos para o céu e percebemos que o nosso amor é tão vasto quanto o universo.</p>
+                    </div>
+                </div>
+                <div class="timeline-item slide-in right">
+                    <div class="timeline-icon">🎥</div>
+                    <div class="timeline-content">
+                        <h3>O nosso filme favorito</h3>
+                        <p>O filme que nos aproxima e nos faz criar memórias juntos, um filme para a nossa eternidade.</p>
+                    </div>
+                </div>
+                <div class="timeline-item slide-in left">
+                    <div class="timeline-icon">💖</div>
+                    <div class="timeline-content">
+                        <h3>E ainda continua...</h3>
+                        <p>Hoje e para todo o sempre, celebrando cada dia ao seu lado e construindo o nosso futuro.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="por-que-eu-te-amo" class="section por-que-eu-te-amo">
+            <h2 class="section-title">Por que eu te amo ❤️</h2>
+            <div class="reason-list">
+                <div class="reason-item zoom-in" style="animation-delay: 0.2s;">
+                    <span class="reason-icon">⭐</span>
+                    <p>Você é a estrela que ilumina os meus dias, a razão do meu sorriso e a paz do meu coração.</p>
+                </div>
+                <div class="reason-item zoom-in" style="animation-delay: 0.4s;">
+                    <span class="reason-icon">💖</span>
+                    <p>Com você, cada momento é mágico e a vida se torna uma aventura perfeita. Você é a minha felicidade.</p>
+                </div>
+                <div class="reason-item zoom-in" style="animation-delay: 0.6s;">
+                    <span class="reason-icon">♾️</span>
+                    <p>O nosso amor é infinito, um sentimento que cresce a cada dia. Você é a minha vida e meu eterno presente.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="voce-e-linda" class="section voce-e-linda">
+            <h2 class="section-title">Você é linda</h2>
+            <div class="linda-box fade-in">
+                <p>
+                    Camila, eu sei que às vezes a gente se esquece de dizer as coisas mais simples e importantes. Então, quero que saiba que para mim você é a mulher mais linda do mundo. Não apenas pela beleza que eu vejo nos seus olhos e no seu sorriso, mas por essa beleza que vem de dentro, que irradia na sua força, na sua gentileza e no seu coração. Cada detalhe seu é a perfeição aos meus olhos, e eu sou um sortudo por ter você na minha vida.
+                </p>
+            </div>
+        </section>
+
+        <section id="mensagem" class="section mensagem">
+            <h2 class="section-title">Uma mensagem para você</h2>
+            <div class="message-box zoom-in">
+                <p id="typewriter-text"></p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>Feito com <span class="heart-pulse">❤️</span> por Lucas S</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+        
+            // Menu Hamburger
+            const hamburger = document.querySelector('.hamburger');
+            const nav = document.querySelector('.nav');
+        
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                nav.classList.toggle('active');
+            });
+        
+            // Fechar menu ao clicar em um link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    nav.classList.remove('active');
+                });
+            });
+        
+            // Animação de rolagem suave
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        
+            // Animação de entrada dos elementos na rolagem
+            const animatedElements = document.querySelectorAll('.timeline-item, .reason-item');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+        
+            animatedElements.forEach(el => {
+                observer.observe(el);
+            });
+        
+            // Efeito de máquina de escrever
+            const typewriterText = document.getElementById('typewriter-text');
+            const message = "Camila, fiz este site como uma forma simples, mas sincera, de mostrar o quanto você é especial. Cada detalhe aqui foi pensado para você. Obrigado por fazer parte da minha vida ❤️";
+            let i = 0;
+        
+            const typeWriter = () => {
+                if (i < message.length) {
+                    typewriterText.innerHTML += message.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 50); // Aumente ou diminua este valor para mudar a velocidade
+                }
+            };
+            
+            // Inicia a animação quando a seção de mensagem for visível
+            const messageSection = document.getElementById('mensagem');
+            const messageObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        typewriterText.innerHTML = ''; // Limpa o texto antes de começar
+                        typeWriter();
+                        messageObserver.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.5
+            });
+        
+            if (messageSection) {
+                messageObserver.observe(messageSection);
+            }
+        });
+    </script>
+</body>
+</html>
